@@ -1,3 +1,5 @@
+
+
 # ZooInSafety
 
 There was a problem in a cat finalization logic. 
@@ -11,8 +13,9 @@ Because of some reason, a cat should be finalized only if number of corpses is g
             while (Zoo.NumCorpses > 200) { }
         }
         
-This loop was removed and the problem disappeared. Still the feature of preserving cat corpses needs to be implemented.
-So the Morgue class was introduced. Whenever an animal is about to garbage collected, the number of corpses is checked. If it is not enough corpses in Zoo, then the animal is moved to morgue and will not be garbage collected next time.
+This loop was removed and the problem disappeared. 
+
+Still the feature of preserving cat corpses needs to be implemented, so the Morgue class was introduced. Whenever an animal is about to garbage collected, the number of corpses is checked. If it is not enough corpses in Zoo, then the animal is moved to morgue and will not be garbage collected next time.
 
         ~Animal()
         {
