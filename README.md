@@ -1,4 +1,4 @@
-
+ be
 
 # ZooInSafety
 
@@ -15,7 +15,7 @@ Because of some reason, a cat should be finalized only if number of corpses is g
         
 This loop was removed and the problem disappeared. 
 
-Still the feature of preserving cat corpses needs to be implemented, so the Morgue class was introduced. Whenever an animal is about to garbage collected, the number of corpses is checked. If it is not enough corpses in Zoo, then the animal is moved to morgue and will not be garbage collected next time.
+Still the feature of preserving cat corpses needs to be implemented, so the Morgue class was introduced. Whenever an animal is about to be garbage collected, the number of corpses is checked. If there is not enough corpses in the zoo, then the animal is moved to morgue and will not be garbage collected next time.
 
         ~Animal()
         {
@@ -32,7 +32,7 @@ Still the feature of preserving cat corpses needs to be implemented, so the Morg
             }
         }
         
- And time to time corpses are being removed from the morgue if there are enough corpses in the zoo.
+ And time to time corpses are being removed from the morgue if there is enough corpses in the zoo.
  
         public static void RemoveAnimalsIfNeeded()
         {
