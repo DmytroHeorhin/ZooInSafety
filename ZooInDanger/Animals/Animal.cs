@@ -17,6 +17,7 @@ namespace Zoo.Animals
         private const int infectionDeathInterval = 3;
         private const int lifeInterval = 3; //in years
         private const int YearInterval = 100;
+        private const int DefaultMinNumberOfCorpses = 0;
 
         private const int infectionResistance = 70;
 
@@ -30,6 +31,10 @@ namespace Zoo.Animals
         public virtual int HungerDeathInterval { get { return hungerDeathInterval; } }
         public virtual int EatInterval { get { return eatInterval; } }
 
+        /// <summary>
+        /// A corpse of an animal will be ruined only when number of corpses in Zoo is less then MinNumberOfCorpses property.
+        /// </summary>
+        public virtual int MinNumberOfCorpses => DefaultMinNumberOfCorpses;
 
         public Animal(IAnimalStatusTracker statusTracker)
         {
@@ -117,10 +122,17 @@ namespace Zoo.Animals
 
         ~Animal()
         {
-            _isAlive = false;
-            Logger.Log("Ruining animal: {0}, ID = {1}", GetType().Name, _id);
-            Interlocked.Decrement(ref Zoo.NumCorpses);
-            Logger.LogYellow("Ruining animal: {0} finished, ID= {1}", GetType().Name, _id);
+            if (Zoo.NumCorpses < MinNumberOfCorpses)
+            {
+                Morgue.Receive(this);
+                Logger.LogYellow("Animal #{0} has been moved to morgue", _id);
+            }
+            else
+            {
+                Logger.Log("Ruining animal: {0}, ID = {1}", GetType().Name, _id);
+                Interlocked.Decrement(ref Zoo.NumCorpses);
+                Logger.LogYellow("Ruining animal: {0} finished, ID= {1}", GetType().Name, _id);
+            }
         }
 
         public void OnTick()

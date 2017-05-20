@@ -13,23 +13,15 @@
 
         public Elephant(IAnimalStatusTracker statusTracker) : base(statusTracker)
         {
-            _rightTusk = new byte[0x14000];
-            _leftTusk = new byte[0x14000];
-            _leftFrontFoot=  new byte[0x14000];
-            _leftBackFoot = new byte[0x14000];
-            _rightFrontFoot = new byte[0x14000];
-            _rightBackFoot = new byte[0x14000];
+            _rightTusk = new byte[0x1400000];
+            _leftTusk = new byte[0x1400000];
+            _leftFrontFoot=  new byte[0x1400000];
+            _leftBackFoot = new byte[0x1400000];
+            _rightFrontFoot = new byte[0x1400000];
+            _rightBackFoot = new byte[0x1400000];
 
         }
 
-        public override int LifeInterval
-        {
-            get { return 100; }
-        }
-
-        ~Elephant()
-        {
-            _rightTusk = _leftTusk = null;
-        }
+        public override int LifeInterval => 100;
     }
 }

@@ -8,5 +8,6 @@
         bool IsAlive { get; }
         void Kill();
         void Infect();
+        int MinNumberOfCorpses { get; }
     }
 }

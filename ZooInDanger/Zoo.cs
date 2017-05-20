@@ -7,7 +7,6 @@ using Zoo.Animals;
 
 namespace Zoo
 {
-
     public class Zoo : IAnimalStatusTracker, IAnimalReceiver, ITickListener
     {
         private readonly Random _rnd = new Random();
@@ -75,7 +74,7 @@ namespace Zoo
             {
                 Interlocked.Exchange(ref _lastInfo, 0);
                 ShowStatus();
-                if (NumCorpses%1000 == 0 && NumCorpses > 0)
+                if (NumCorpses > 1000 && NumCorpses > 0)
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Critical corpse number: {0}", NumCorpses);
@@ -86,14 +85,15 @@ namespace Zoo
                     Thread.Sleep(200);
                     Console.ResetColor();
                 }
+                Morgue.RemoveAnimalsIfNeeded();
             }
         }
 
 
-        //Show alive animals count, troops and few other params
+        //Show alive animals count, corpses and few other params
         private void ShowStatus()
         {
-            Logger.Log("Total received: {0}, Total dead: {1}, Now in zoo: {2}, corpses in zoo: {3}", _receivedAll, _dead, _animals.Count, NumCorpses);
+            Logger.Log("Total received: {0}, Total dead: {1}, Now in zoo: {2}, corpses in zoo: {3}, corpses in morgue: {4}, total received by morgue: {5}", _receivedAll, _dead, _animals.Count, NumCorpses, Morgue.Count, Morgue.TotalAnimalsRecived);
         }
 
 
@@ -122,8 +122,8 @@ namespace Zoo
                 NumCorpses++;
 
                 //give more animals
-                if (_animals.Count < MaxAnimals && Provider != null)
-                    Provider.Resume();
+                if (_animals.Count < MaxAnimals)
+                    Provider?.Resume();
             }
         }
 

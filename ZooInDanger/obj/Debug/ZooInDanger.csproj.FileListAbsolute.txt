@@ -1,0 +1,6 @@
+C:\Users\Dmytro_Heorhin\Documents\Visual Studio 2017\Projects\ZooInDanger\ZooInDanger\bin\Debug\ZooInDanger.exe.config
+C:\Users\Dmytro_Heorhin\Documents\Visual Studio 2017\Projects\ZooInDanger\ZooInDanger\bin\Debug\ZooInDanger.exe
+C:\Users\Dmytro_Heorhin\Documents\Visual Studio 2017\Projects\ZooInDanger\ZooInDanger\bin\Debug\ZooInDanger.pdb
+C:\Users\Dmytro_Heorhin\Documents\Visual Studio 2017\Projects\ZooInDanger\ZooInDanger\obj\Debug\ZooInDanger.csprojResolveAssemblyReference.cache
+C:\Users\Dmytro_Heorhin\Documents\Visual Studio 2017\Projects\ZooInDanger\ZooInDanger\obj\Debug\ZooInDanger.exe
+C:\Users\Dmytro_Heorhin\Documents\Visual Studio 2017\Projects\ZooInDanger\ZooInDanger\obj\Debug\ZooInDanger.pdb

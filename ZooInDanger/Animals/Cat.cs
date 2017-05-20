@@ -8,22 +8,16 @@ namespace Zoo.Animals
         {
         }
 
-        public override int LifeInterval
-        {
-            get { return 13; }
-        }
+        // Release the object only in case number of corpses > 100
+        public override int MinNumberOfCorpses => 100;
 
-        public override int InfectionDeathInterval
-        {
-            get { return 300; }
-        }
+        public override int LifeInterval => 13;
+
+        public override int InfectionDeathInterval => 300;
 
         ~Cat()
         {
             Logger.LogYellow("Finalizing cat!");
-
-            // Release the object only in case number of corpses > 100
-            while (Zoo.NumCorpses > 200) { }
         }
     }
 }
