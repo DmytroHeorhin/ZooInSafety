@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Zoo.Animals;
 
 namespace Zoo
@@ -26,6 +27,7 @@ namespace Zoo
         public static void Receive(IAnimal animal)
         {
             Animals.Add(animal);
+            GC.ReRegisterForFinalize(animal);
             TotalAnimalsRecived++;
         }
     }
