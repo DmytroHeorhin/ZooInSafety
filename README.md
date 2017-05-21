@@ -1,7 +1,3 @@
-
-
-be
-
 # ZooInSafety
 
 There was a problem in a cat finalization logic. 
