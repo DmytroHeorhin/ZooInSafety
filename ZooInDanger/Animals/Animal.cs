@@ -94,7 +94,10 @@ namespace Zoo.Animals
             _isAlive = false;
             _statusTracker.Died(this);
             EarthLiveTicker.LiveTicker.Unsubscribe(this);
+            OnDeath();
         }
+
+        protected virtual void OnDeath() { }
 
         public virtual void Eat(string eatName)
         {
@@ -109,8 +112,6 @@ namespace Zoo.Animals
         {
             _lastInfected = 0;
         }
-
-
         public virtual int Age { get { return _ticksAlive / YearInterval; } }
         public virtual bool IsAlive { get { return _isAlive; } }
 

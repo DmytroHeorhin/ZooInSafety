@@ -1,4 +1,6 @@
-﻿namespace Zoo.Animals
+﻿using System;
+
+namespace Zoo.Animals
 {
     public class Elephant: Animal
     {
@@ -13,15 +15,32 @@
 
         public Elephant(IAnimalStatusTracker statusTracker) : base(statusTracker)
         {
-            _rightTusk = new byte[0x1400000];
-            _leftTusk = new byte[0x1400000];
-            _leftFrontFoot=  new byte[0x1400000];
-            _leftBackFoot = new byte[0x1400000];
-            _rightFrontFoot = new byte[0x1400000];
-            _rightBackFoot = new byte[0x1400000];
+            try
+            {
+                _rightTusk = new byte[0x14000];
+                _leftTusk = new byte[0x1400];
+                _leftFrontFoot = new byte[0x14000];
+                _leftBackFoot = new byte[0x14000];
+                _rightFrontFoot = new byte[0x14000];
+                _rightBackFoot = new byte[0x14000];
+            }
+            catch (OutOfMemoryException)
+            {
+                Logger.LogYellow("Failed to create an elephant, not enough room for such giant");
+                Kill();
+            }
+        }
+        public override int LifeInterval => 100;
 
+        protected override void OnDeath()
+        {
+            FallApart();
+            Logger.LogYellow("Elephant has fallen apart...");
         }
 
-        public override int LifeInterval => 100;
+        private void FallApart()
+        {
+            _leftTusk = _rightTusk = _leftFrontFoot = _rightFrontFoot = _leftBackFoot = _rightBackFoot = null;
+        }
     }
 }
