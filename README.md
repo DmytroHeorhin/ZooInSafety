@@ -34,21 +34,8 @@ Still the feature of preserving cat corpses needs to be implemented, so the Morg
             }
         }
         
- And time to time corpses are being removed from the morgue if there is enough corpses in the zoo.
- 
-        public static void RemoveAnimalsIfNeeded()
-        {
-            if (Count == 0) return;
-            var snapshot = new List<IAnimal>(Animals);
-            foreach (var animal in snapshot)
-            {
-                if (Zoo.NumCorpses > animal.MinNumberOfCorpses)
-                {
-                    Animals.Remove(animal);
-                }
-            }
-        }
-        
+And time to time corpses are being removed from the morgue if there is enough corpses in the zoo.
+      
 Also there was a problems with elephant. There was a possibility of OutOfMemoryException during the allocation of elephant's parts. A handling for such situation was added.
 
         public Elephant(IAnimalStatusTracker statusTracker) : base(statusTracker)
